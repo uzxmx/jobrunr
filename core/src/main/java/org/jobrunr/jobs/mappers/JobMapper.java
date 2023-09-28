@@ -25,7 +25,10 @@ public class JobMapper {
     }
 
     public RecurringJob deserializeRecurringJob(String serializedJobAsString) {
-        return jsonMapper.deserialize(serializedJobAsString, RecurringJob.class);
+        if (serializedJobAsString != null && !serializedJobAsString.isEmpty()) {
+            return jsonMapper.deserialize(serializedJobAsString, RecurringJob.class);
+        }
+        return null;
     }
 
 }

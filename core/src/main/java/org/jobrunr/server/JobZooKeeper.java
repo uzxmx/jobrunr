@@ -78,12 +78,12 @@ public class JobZooKeeper implements Runnable {
             onboardNewWorkIfPossible();
         } catch (Exception e) {
             dashboardNotificationManager.handle(e);
-            if (exceptionCount.getAndIncrement() < 5) {
+            // if (exceptionCount.getAndIncrement() < 5) {
                 LOGGER.warn(JobRunrException.SHOULD_NOT_HAPPEN_MESSAGE + " - Processing will continue.", e);
-            } else {
-                LOGGER.error("FATAL - JobRunr encountered too many processing exceptions. Shutting down.", shouldNotHappenException(e));
-                backgroundJobServer.stop();
-            }
+            // } else {
+            //     LOGGER.error("FATAL - JobRunr encountered too many processing exceptions. Shutting down.", shouldNotHappenException(e));
+            //     backgroundJobServer.stop();
+            // }
         }
     }
 

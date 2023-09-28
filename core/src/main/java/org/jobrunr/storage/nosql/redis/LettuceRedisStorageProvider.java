@@ -15,6 +15,7 @@ import org.jobrunr.storage.JobStats;
 import org.jobrunr.storage.*;
 import org.jobrunr.storage.nosql.NoSqlStorageProvider;
 import org.jobrunr.utils.annotations.Beta;
+import org.jobrunr.utils.mapper.JsonMapper;
 import org.jobrunr.utils.resilience.RateLimiter;
 
 import java.time.Duration;
@@ -507,6 +508,7 @@ public class LettuceRedisStorageProvider extends AbstractStorageProvider impleme
                     .stream()
                     .map(id -> commands.get(recurringJobKey(keyPrefix, id)))
                     .map(jobMapper::deserializeRecurringJob)
+                    .filter(Objects::nonNull)
                     .collect(toList());
             return new RecurringJobsResult(recurringJobs);
         }

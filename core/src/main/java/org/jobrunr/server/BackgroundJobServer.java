@@ -103,6 +103,7 @@ public class BackgroundJobServer implements BackgroundJobServerMBean {
             try (BackgroundJobServerLifecycleLock ignored = lifecycleLock.lock()) {
                 firstHeartbeat = Instant.now();
                 isRunning = true;
+                LOGGER.info("xmx: start jobrunr");
                 startZooKeepers();
                 startWorkers();
                 runStartupTasks();
